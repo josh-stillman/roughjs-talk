@@ -4,6 +4,7 @@ import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/simple.css';
 import RevealMarkdown from 'reveal.js/plugin/markdown/markdown.esm';
 import RevealHighlight from 'reveal.js/plugin/highlight/highlight.esm';
+import 'reveal.js/plugin/highlight/zenburn.css';
 import RevealNotes from 'reveal.js/plugin/notes/notes.esm';
 
 import './App.css';
@@ -193,7 +194,193 @@ function App() {
         </section>
 
         <section>
+          <h3>SVG Basics Refresher</h3>
+        </section>
+
+        <section>
+          <h3>SVG vs Raster</h3>
+          <img width="500px" src="svg-vs-raster.jpg" />
+          <a
+            className="cite"
+            target="none"
+            href="https://www.ratermanis.com/blog/2017/12/28/vector-vs-raster"
+          >
+            source
+          </a>
+        </section>
+
+        <section
+          data-background-video="svg-paths.mov"
+          data-background-video-loop="true"
+          data-background-size="cover"
+          data-background-video-muted="true"
+        >
+          {/* <h3>SVG Paths</h3> */}
+          {/* <img width="500px" src="svg-vs-raster.jpg" /> */}
+          <a
+            className="cite-right"
+            target="none"
+            href="https://www.nan.fyi/svg-paths"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
           <h3>How SVG Animations Work</h3>
+        </section>
+
+        <section>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="2">
+              {`<svg ...>
+  <path class="path" stroke="#000000" ... >
+</svg>`}
+            </code>
+          </pre>
+          <img src="svg-animations-explained/svg-animation-1.webp" />
+          <a
+            className="cite"
+            target="none"
+            href="https://css-tricks.com/svg-line-animation-works/"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
+          <p>Adding dashes</p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="2">
+              {`.path {
+  stroke-dasharray: 20;
+}`}
+            </code>
+          </pre>
+          <img src="svg-animations-explained/svg-animation-2.webp" />
+          <a
+            className="cite"
+            target="none"
+            href="https://css-tricks.com/svg-line-animation-works/"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
+          <p>Longer dashes</p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="2">
+              {`.path {
+  stroke-dasharray: 100;
+}`}
+            </code>
+          </pre>
+          <img src="svg-animations-explained/long-dashes.webp" />
+          <a
+            className="cite"
+            target="none"
+            href="https://css-tricks.com/svg-line-animation-works/"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
+          <p>Offset the dashes, animate offset position</p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="3|9">
+              {`.path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: dash 5s linear;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}`}
+            </code>
+          </pre>
+          <img src="svg-animations-explained/svg-animations-3.webp" />
+          <a
+            className="cite"
+            target="none"
+            href="https://css-tricks.com/svg-line-animation-works/"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
+          <ol>
+            <li className="fragment">
+              Calculate shape length with JavaScript
+              <pre>
+                <code data-trim data-noescape data-line-numbers="2">
+                  {`var path = document.querySelector('.path');
+var length = path.getTotalLength(); // => 1000
+`}
+                </code>
+              </pre>
+            </li>
+            <li className="fragment fade-up">
+              Make a dash equal to the length of the entire shape
+              <pre>
+                <code data-trim data-noescape data-line-numbers="2">
+                  {`.path {
+  stroke-dasharray: 1000;
+}`}
+                </code>
+              </pre>
+            </li>
+            <li className="fragment fade-up">
+              Offset the dash so it covers up the entire shape
+              <pre>
+                <code data-trim data-noescape data-line-numbers="2">
+                  {`.path {
+  stroke-dashoffset: 1000;
+}`}
+                </code>
+              </pre>
+            </li>
+            <li className="fragment fade-up">Now the shape is hidden!</li>
+          </ol>
+          <a
+            className="cite"
+            target="none"
+            href="https://css-tricks.com/svg-line-animation-works/"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
+          <p>Animate the dash off of the shape to reveal!</p>
+          <pre>
+            <code data-trim data-noescape data-line-numbers="2|3|9">
+              {`.path {
+  stroke-dasharray: 1000; // length of shape
+  stroke-dashoffset: 1000; // move dash on top of shape
+  animation: dash 5s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0; // move dash off of shape
+  }
+}`}
+            </code>
+          </pre>
+          <img src="svg-animations-explained/svg-animations-4.webp" />
+          <a
+            className="cite"
+            target="none"
+            href="https://css-tricks.com/svg-line-animation-works/"
+          >
+            source
+          </a>
         </section>
 
         <section>

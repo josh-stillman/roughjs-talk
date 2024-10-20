@@ -5,3 +5,19 @@
   right: 0;
   bottom: 0;
 }
+
+.cite {
+  font-size: 8px;
+  text-decoration: underline !important;
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+}
+
+.cite-right {
+  font-size: 8px;
+  text-decoration: underline !important;
+  position: absolute !important;
+  bottom: 0;
+  right: 0;
+}
