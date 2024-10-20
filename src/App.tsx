@@ -41,6 +41,11 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const vids = document.querySelectorAll<HTMLVideoElement>('.halfspeed');
+    vids.forEach(v => (v.playbackRate = 0.5));
+  }, []);
+
   return (
     // Your presentation is sized based on the width and height of
     // our parent element. Make sure the parent is not 0-height.
@@ -52,10 +57,7 @@ function App() {
           <p>Animating SVGs with a hand-drawn style</p>
         </section>
 
-        <section
-          data-background-iframe="https://roughjs.com/"
-          data-background-interactive
-        />
+        <section data-background-image="rough-homepage.png"></section>
 
         <section>
           <img width="80%" src="shapes-examples.png" />
@@ -102,7 +104,7 @@ function App() {
           data-background-size="cover"
           data-background-video-muted="true"
         >
-          <h2 className="overlay-text">Roughviz Charts</h2>
+          <p className="overlay-text">Roughviz Charts</p>
         </section>
 
         <section
@@ -177,11 +179,17 @@ function App() {
         </section>
 
         <section>
+          <h1>TODO</h1>
           <h3>Why Hand-drawn?</h3>
         </section>
 
         <section>
           <h3>Part II: Animating Rough.js</h3>
+        </section>
+
+        <section>
+          <h1>TODO</h1>
+          <h3>Why I wanted to make this animatable</h3>
         </section>
 
         <section
@@ -315,7 +323,7 @@ function App() {
 
         <section>
           <ol>
-            <li className="fragment">
+            <li>
               Calculate shape length with JavaScript
               <pre>
                 <code data-trim data-noescape data-line-numbers="2">
@@ -384,6 +392,46 @@ var length = path.getTotalLength(); // => 1000
         </section>
 
         <section>
+          <p>Staggering with delay</p>
+          <pre>
+            <code
+              style={{ maxHeight: 100 }}
+              data-trim
+              data-noescape
+              data-line-numbers="3|8|13"
+            >
+              {`#drawable-illustration path:not([fill="none"]) {
+  ...
+  animation: draw 2s forwards;
+}
+
+#drawable-illustration path:nth-child(1) {
+  ...
+  animation-delay: 0s;
+}
+
+#drawable-illustration path:nth-child(2) {
+  ...
+  animation-delay: 2s;
+}`}
+            </code>
+          </pre>
+          <video
+            width="400px"
+            data-autoplay
+            loop
+            src="animation-delay-demo.mov"
+          />
+          <a
+            className="cite"
+            target="none"
+            href="https://blog.logrocket.com/how-to-animate-svg-css-tutorial-examples/"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
           <h3>"CSS Reasoning"</h3>
         </section>
 
@@ -393,6 +441,177 @@ var length = path.getTotalLength(); // => 1000
 
         <section>
           <img src="css-is-weird.png" />
+        </section>
+
+        <section>
+          <h1>TODO</h1>
+          <h3>
+            Show problems with rough as-is: complex paths aren't animatable,
+            double outline looks weird
+          </h3>
+        </section>
+
+        <section>
+          <h1>TODO</h1>
+          <h3>Forking Rough.js to add animations</h3>
+        </section>
+
+        <section>
+          <p>Split complex paths on each MOVE command</p>
+          <aside>Use path array instead of single string</aside>
+          <img src="split-paths-code.png" />
+        </section>
+
+        <section>
+          <h4>Rearrange DOM order of paths to match animation order</h4>
+          <video
+            className="halfspeed"
+            data-autoplay
+            loop
+            src="double-outline.mov"
+          />
+        </section>
+
+        {/* <section>
+          <h3>Applying Animations with JavaScript</h3>
+          <section>
+            <ol>
+              <li>Loop over each path in a shape's outline or fill</li>
+              <li className="fragment fade-up">
+                As before, apply a dash the length of the line to cover it
+              </li>
+              <li className="fragment fade-up">
+                Apply an animation duration proportionate to each line's total
+                length
+                <pre>
+                  <code data-trim data-noescape data-line-numbers="2">
+                    {`.path {
+  stroke-dasharray: 1000;
+}`}
+                  </code>
+                </pre>
+              </li>
+              <li className="fragment fade-up">
+                Apply a delay equal to the duration of all prior lines in the
+                group. Keep a running tally of the lines' animation durations.
+                <pre>
+                  <code data-trim data-noescape data-line-numbers="2">
+                    {`.path {
+  stroke-dashoffset: 1000;
+}`}
+                  </code>
+                </pre>
+              </li>
+              <li className="fragment fade-up">Now the shape is hidden!</li>
+            </ol>
+            <a
+              className="cite"
+              target="none"
+              href="https://css-tricks.com/svg-line-animation-works/"
+            >
+              source
+            </a>
+          </section>
+        </section> */}
+
+        <section>
+          <p>Add new animation props</p>
+          <img src="new-props-code.png" />
+        </section>
+
+        <section>
+          <h1>TODO</h1>
+          <h3>Adding animation props</h3>
+        </section>
+
+        <section>
+          <h1>TODO</h1>
+          <h3>Show off the playground with a few different shapes</h3>
+        </section>
+
+        <section>
+          <h3>Forking Open-Source NPM Packages</h3>
+        </section>
+
+        <section data-background-image="patch-package.png">
+          <p className="overlay-text" style={{ bottom: 47, maxWidth: 400 }}>
+            patch-package for very small changes
+          </p>
+        </section>
+
+        <section>
+          <div>
+            <p>Better with TypeScript: Forking!🍴</p>
+            <img width="100px" src="typescript-logo.png" />
+          </div>
+          <img width="80%" src="fork-button.webp" />
+        </section>
+
+        <section>
+          <p>In the forked package.json</p>
+          <img width="150px" src="fork-wink.png" />
+          <pre>
+            <code data-trim data-noescape data-line-numbers="3">
+              {`"scripts": {
+    "build": "rm -rf bin && tsc && rollup -c",
+    "prepare": "npm run build",
+    ...
+  }
+`}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <p>Consuming the fork</p>
+          <img width="200px" src="consume-fork.jpg" />
+          <pre>
+            <code data-trim data-noescape data-line-numbers="2">
+              {`"dependencies": {
+  "rough-animated": "josh-stillman/rough-animated#js/animate"
+  ...
+}
+`}
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h1>TODO</h1>
+          <h3>Result of Forking in I Ching Project</h3>
+        </section>
+
+        <section>
+          <h3>Stirring Conclusion</h3>
+        </section>
+
+        <section>
+          <h3>Shamless Plug: Lintier</h3>
+          <img src="lintier.gif" />
+          <a
+            className="cite"
+            target="none"
+            href="https://github.com/josh-stillman/lintier"
+          >
+            source
+          </a>
+        </section>
+
+        <section>
+          <h1>PSA: VOTE!! 🇺🇸</h1>
+          <h3>
+            NY registration deadline is in <b>TWO DAYS</b> - 10/26!!
+          </h3>
+          <h3>
+            You can register{' '}
+            <a
+              style={{ textDecoration: 'underline' }}
+              href="https://elections.ny.gov/voter-registration-process"
+              target="blank"
+            >
+              online!
+            </a>
+          </h3>
         </section>
       </div>
     </div>
