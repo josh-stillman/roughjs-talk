@@ -111,6 +111,29 @@ function App() {
           data-background-video-muted="true"
         ></section>
 
+        <section
+          data-background-video="font-awesome.mov"
+          data-background-video-loop="true"
+          data-background-size="cover"
+          data-background-video-muted="true"
+        ></section>
+
+        <section
+          data-background-video="wired-components.mov"
+          data-background-video-loop="true"
+          data-background-size="cover"
+          data-background-video-muted="true"
+        >
+          <p className="overlay-text">Wired Components</p>
+        </section>
+
+        <section
+          data-background-video="rough-notation.mov"
+          data-background-video-loop="true"
+          data-background-size="cover"
+          data-background-video-muted="true"
+        ></section>
+
         <section>
           <h3>How Rough.js Works</h3>
         </section>
@@ -152,7 +175,38 @@ function App() {
           <img width="80%" src="shapes-examples.png" />
         </section>
 
-        {/* <section data-background-image="m14.png" data-background-size="400px" /> */}
+        <section>
+          <h3>Why Hand-drawn?</h3>
+        </section>
+
+        <section>
+          <h3>Part II: Animating Rough.js</h3>
+        </section>
+
+        <section
+          data-background-video="iching-jank.mov"
+          data-background-video-loop="true"
+          data-background-size="cover"
+          data-background-video-muted="true"
+        >
+          <h3 className="overlay-text">Janky AF!</h3>
+        </section>
+
+        <section>
+          <h3>How SVG Animations Work</h3>
+        </section>
+
+        <section>
+          <h3>"CSS Reasoning"</h3>
+        </section>
+
+        <section>
+          <img width="80%" src="css_is_awesome.png" />
+        </section>
+
+        <section>
+          <img src="css-is-weird.png" />
+        </section>
       </div>
     </div>
   );
