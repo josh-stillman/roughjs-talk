@@ -1,0 +1,7 @@
+.overlay-text {
+  background: goldenrod;
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
