@@ -444,22 +444,99 @@ var length = path.getTotalLength(); // => 1000
         </section>
 
         <section>
-          <h1>TODO</h1>
-          <h3>
-            Show problems with rough as-is: complex paths aren't animatable,
-            double outline looks weird
-          </h3>
+          <h3>Rough.js's paths are too complex for this kind of animation.</h3>
+          <video
+            width="400px"
+            data-autoplay
+            loop
+            src="problem-complex-paths.mov"
+          />
         </section>
 
         <section>
-          <h1>TODO</h1>
-          <h3>Forking Rough.js to add animations</h3>
+          <h3>Forking Rough.js to add animations🍴</h3>
         </section>
 
         <section>
           <p>Split complex paths on each MOVE command</p>
           <aside>Use path array instead of single string</aside>
           <img src="split-paths-code.png" />
+        </section>
+
+        <section>
+          <p>Before</p>
+          <pre>
+            <code
+              style={{ maxHeight: 200 }}
+              data-trim
+              data-noescape
+              data-line-numbers="4-5|8-9"
+            >
+              {`<svg width="66" height="30">
+<g>
+  <path
+    d="M0 0 C0 0, 0 0, 0 0 M0 0 C0 0, 0 0, 0 0 ...."
+    // one super long path for the outline
+  ></path>
+  <path
+    d="M0.9136009482698242 2.0068773385450207 ..."
+    // one super long path for the hachure fill
+  ></path>}`}
+            </code>
+          </pre>
+          <p>vs After</p>
+          <pre>
+            <code
+              style={{ maxHeight: 200 }}
+              data-trim
+              data-noescape
+              data-line-numbers="4-5|37-38"
+            >
+              {`<svg width="100%" height="100%">
+<g>
+  <path
+    d="M9.991146819517672 10.01018441913022 ..."
+    // lots of paths
+    ...
+  ></path>
+  <path
+    d="M9.991146819517672 10.010184419130296 ..."
+    ...
+  ></path>
+  <path
+    d="M9.508173631691056 15.60902327884526 ..."
+    ...
+  ></path>
+  <path
+    d="M9.508173631691056 15.60902327884526 ..."
+    ...
+  ></path>
+  <path
+    d="M9.508173631691056 15.60902327884526 ..."
+    ...
+  ></path>
+  <path
+    d="M9.508173631691056 15.60902327884526 ..."
+    ...
+  ></path>
+  <path
+    d="M9.508173631691056 15.60902327884526 ..."
+    ...
+  ></path>
+  <path
+    d="M9.508173631691056 15.60902327884526 ..."
+    ...
+  ></path>
+  <path
+    d="M9.845303239339351 16.219805797497646 ..."
+    // one path for each line
+    ...
+  ></path>
+  ...
+  </g>
+  </svg>`}
+            </code>
+          </pre>
         </section>
 
         <section>
@@ -472,56 +549,61 @@ var length = path.getTotalLength(); // => 1000
           />
         </section>
 
-        {/* <section>
+        <section>
           <h3>Applying Animations with JavaScript</h3>
-          <section>
-            <ol>
-              <li>Loop over each path in a shape's outline or fill</li>
-              <li className="fragment fade-up">
-                As before, apply a dash the length of the line to cover it
-              </li>
-              <li className="fragment fade-up">
-                Apply an animation duration proportionate to each line's total
-                length
-                <pre>
-                  <code data-trim data-noescape data-line-numbers="2">
-                    {`.path {
-  stroke-dasharray: 1000;
-}`}
-                  </code>
-                </pre>
-              </li>
-              <li className="fragment fade-up">
-                Apply a delay equal to the duration of all prior lines in the
-                group. Keep a running tally of the lines' animation durations.
-                <pre>
-                  <code data-trim data-noescape data-line-numbers="2">
-                    {`.path {
-  stroke-dashoffset: 1000;
-}`}
-                  </code>
-                </pre>
-              </li>
-              <li className="fragment fade-up">Now the shape is hidden!</li>
-            </ol>
-            <a
-              className="cite"
-              target="none"
-              href="https://css-tricks.com/svg-line-animation-works/"
-            >
-              source
-            </a>
-          </section>
-        </section> */}
+          <ol>
+            <li>Loop over each path in outline, then in the fill</li>
+            <li className="fragment fade-up">
+              As before, apply a dash the length of the line to cover it
+            </li>
+            <li className="fragment fade-up">
+              Each line's animation duration is proportionate to its length
+              <pre>
+                <code
+                  data-trim
+                  data-noescape
+                  data-line-numbers
+                  style={{ marginLeft: 0, width: 'fit-content' }}
+                >
+                  {`const lineDuration = totalDuration * (lineLength / totalLength);`}
+                </code>
+              </pre>
+            </li>
+            <li className="fragment fade-up">
+              Apply a delay equal to the duration of all prior lines in the
+              group. Keep a running tally of the lines' animation durations.
+              <pre>
+                <code data-trim data-noescape data-line-numbers="2">
+                  {`const delay = runningTally;
+runningTally += lineDuration;`}
+                </code>
+              </pre>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Staggering Animations</h3>
+          <ol>
+            <li className="fragment fade-up">Animate the outline first </li>
+            <li className="fragment fade-up">
+              Delay the start of the fill until the outline finishes
+            </li>
+            <li className="fragment fade-up">
+              Add a prop to control the percentage of the animation time given
+              to the fill
+            </li>
+            <li className="fragment fade-up">
+              Orchestrate animations for multiple shapes with an offset delay
+              prop. Delay the start of the second shape until the first shape is
+              finished.
+            </li>
+          </ol>
+        </section>
 
         <section>
           <p>Add new animation props</p>
           <img src="new-props-code.png" />
-        </section>
-
-        <section>
-          <h1>TODO</h1>
-          <h3>Adding animation props</h3>
         </section>
 
         <section>
@@ -563,7 +645,7 @@ var length = path.getTotalLength(); // => 1000
         </section>
 
         <section>
-          <p>Consuming the fork</p>
+          <p>Consuming the fork from GitHub</p>
           <img width="200px" src="consume-fork.jpg" />
           <pre>
             <code data-trim data-noescape data-line-numbers="2">
