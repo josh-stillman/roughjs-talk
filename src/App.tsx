@@ -550,7 +550,6 @@ var length = path.getTotalLength(); // => 1000
         </section>
 
         <section>
-          <h3>Applying Animations with JavaScript</h3>
           <ol>
             <li>Loop over each path in outline, then in the fill</li>
             <li className="fragment fade-up">
@@ -578,6 +577,10 @@ var length = path.getTotalLength(); // => 1000
 runningTally += lineDuration;`}
                 </code>
               </pre>
+            </li>
+            <li className="fragment fade-up">
+              For a zigzag effect, alternate between positive and negative dash
+              offsets.
             </li>
           </ol>
         </section>
@@ -607,8 +610,37 @@ runningTally += lineDuration;`}
         </section>
 
         <section>
-          <h1>TODO</h1>
-          <h3>Show off the playground with a few different shapes</h3>
+          <h3>The results... 🥁</h3>
+        </section>
+
+        <section>
+          <h3>hachure</h3>
+          <video data-autoplay loop src="hachure.mov" />
+        </section>
+
+        <section>
+          <h3>zigzag</h3>
+          <video data-autoplay loop src="zigzag.mov" />
+        </section>
+
+        <section>
+          <h3>crosshatch</h3>
+          <video data-autoplay loop src="crosshatch.mov" />
+        </section>
+
+        <section>
+          <h3>dashed</h3>
+          <video data-autoplay loop src="dashed.mov" />
+        </section>
+
+        <section>
+          <h3>dots</h3>
+          <video data-autoplay loop src="dots.mov" />
+        </section>
+
+        <section>
+          <h3>zigzag line</h3>
+          <video data-autoplay loop src="zigzag line.mov" />
         </section>
 
         <section>
