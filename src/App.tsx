@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/simple.css';
@@ -8,6 +8,7 @@ import 'reveal.js/plugin/highlight/zenburn.css';
 import RevealNotes from 'reveal.js/plugin/notes/notes.esm';
 
 import './App.css';
+import { AnimatedRectangle } from './Rectangle';
 
 function App() {
   const deckDivRef = useRef<HTMLDivElement>(null); // reference to deck container div
@@ -46,6 +47,33 @@ function App() {
     vids.forEach(v => (v.playbackRate = 0.5));
   }, []);
 
+  const FILLS = [
+    'hachure',
+    'dashed',
+    'dots',
+    'cross-hatch',
+    'zigzag',
+    'zigzag-line',
+  ];
+
+  const [fillStyle, setFillStyle] = useState(FILLS[0]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const current = FILLS.indexOf(fillStyle);
+      console.log('new is', FILLS[(current + 1) % FILLS.length]);
+      setFillStyle(FILLS[(current + 1) % FILLS.length]);
+    }, 5000);
+
+    const currentSlide = deckRef.current?.getIndices().h;
+    if (currentSlide && currentSlide > 3) {
+      clearInterval(interval);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [fillStyle, deckRef.current]);
+
   return (
     // Your presentation is sized based on the width and height of
     // our parent element. Make sure the parent is not 0-height.
@@ -53,6 +81,15 @@ function App() {
       <div className="slides">
         {/* Intro */}
         <section>
+          <AnimatedRectangle
+            width={window.innerWidth}
+            height={window.innerHeight}
+            animationDuration={5000}
+            animationDurationFillPercentage={1}
+            hachureGap={20}
+            fillStyle={fillStyle}
+            className="svg-background"
+          />
           <h3>Rough.js Riders Anthem</h3>
           <p>Animating SVGs with a hand-drawn style</p>
         </section>

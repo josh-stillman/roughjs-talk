@@ -21,3 +21,15 @@
   bottom: 0;
   right: 0;
 }
+
+@keyframes rough-animated {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svg-background {
+  position: absolute;
+  left: -175px;
+  top: -75px;
+}
