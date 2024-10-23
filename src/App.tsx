@@ -67,15 +67,15 @@ function App() {
           <img src="us-map.png" />
         </section>
 
-        <section
+        {/* <section
           data-background-iframe="https://pshihn.github.io/rough-playground/squares/"
           data-background-interactive
-        />
+        /> */}
 
-        <section
+        {/* <section
           data-background-iframe="https://pshihn.github.io/rough-playground/squares-fall-through/"
           data-background-interactive
-        />
+        /> */}
 
         <section
           data-background-iframe="https://pshihn.github.io/rough-playground/skulls/"
@@ -178,16 +178,16 @@ function App() {
           <img width="80%" src="shapes-examples.png" />
         </section>
 
-        <section>
+        {/* <section>
           <h1>TODO</h1>
           <h3>Why Hand-drawn?</h3>
-        </section>
+        </section> */}
 
         <section>
           <h3>Part II: Animating Rough.js</h3>
         </section>
 
-        <section>
+        {/* <section>
           <h1>TODO</h1>
           <h3>Why I wanted to make this animatable</h3>
         </section>
@@ -199,7 +199,7 @@ function App() {
           data-background-video-muted="true"
         >
           <h3 className="overlay-text">Janky AF!</h3>
-        </section>
+        </section> */}
 
         <section>
           <h3>SVG Basics Refresher</h3>
@@ -431,13 +431,13 @@ var length = path.getTotalLength(); // => 1000
           </a>
         </section>
 
-        <section>
+        {/* <section>
           <h3>"CSS Reasoning"</h3>
         </section>
 
         <section>
           <img width="80%" src="css_is_awesome.png" />
-        </section>
+        </section> */}
 
         <section>
           <img src="css-is-weird.png" />
@@ -459,7 +459,6 @@ var length = path.getTotalLength(); // => 1000
 
         <section>
           <p>Split complex paths on each MOVE command</p>
-          <aside>Use path array instead of single string</aside>
           <img src="split-paths-code.png" />
         </section>
 
@@ -490,7 +489,7 @@ var length = path.getTotalLength(); // => 1000
               style={{ maxHeight: 200 }}
               data-trim
               data-noescape
-              data-line-numbers="4-5|37-38"
+              data-line-numbers="1|4-5|37-38"
             >
               {`<svg width="100%" height="100%">
 <g>
@@ -569,8 +568,9 @@ var length = path.getTotalLength(); // => 1000
               </pre>
             </li>
             <li className="fragment fade-up">
-              Apply a delay equal to the duration of all prior lines in the
-              group. Keep a running tally of the lines' animation durations.
+              Apply a delay equal to the duration of all prior line animations
+              in the group. Keep a running tally of the lines' animation
+              durations.
               <pre>
                 <code data-trim data-noescape data-line-numbers="2">
                   {`const delay = runningTally;
@@ -597,17 +597,16 @@ runningTally += lineDuration;`}
               to the fill
             </li>
             <li className="fragment fade-up">
-              Orchestrate animations for multiple shapes with an offset delay
-              prop. Delay the start of the second shape until the first shape is
-              finished.
+              Orchestrate animations for multiple shapes by delaying the start
+              of the second shape until the first shape is finished.
             </li>
           </ol>
         </section>
-
+        {/*
         <section>
           <p>Add new animation props</p>
           <img src="new-props-code.png" />
-        </section>
+        </section> */}
 
         <section>
           <h3>The results... 🥁</h3>
@@ -691,8 +690,8 @@ runningTally += lineDuration;`}
         </section>
 
         <section>
-          <h1>TODO</h1>
-          <h3>Result of Forking in I Ching Project</h3>
+          <h3>Using rough-animated in another project</h3>
+          <video data-autoplay loop src="i-ching-animated.mov" />
         </section>
 
         <section>
