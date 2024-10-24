@@ -51,6 +51,7 @@ export const AnimatedRectangle = ({
         fillStyle,
         hachureGap,
         fill,
+        fillWeight: fillStyle === 'dots' ? 3 : 1,
       })
     );
   };

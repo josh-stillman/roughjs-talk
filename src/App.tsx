@@ -64,10 +64,10 @@ function App() {
       setFillStyle(FILLS[(current + 1) % FILLS.length]);
     }, 5000);
 
-    const currentSlide = deckRef.current?.getIndices().h;
-    if (currentSlide && currentSlide > 3) {
-      clearInterval(interval);
-    }
+    // const currentSlide = deckRef.current?.getIndices().h;
+    // if (currentSlide && currentSlide > 3) {
+    //   clearInterval(interval);
+    // }
 
     return () => {
       clearInterval(interval);
@@ -87,11 +87,14 @@ function App() {
             animationDuration={5000}
             animationDurationFillPercentage={1}
             hachureGap={20}
+            fill="grey"
             fillStyle={fillStyle}
             className="svg-background"
           />
-          <h3>Rough.js Riders Anthem</h3>
-          <p>Animating SVGs with a hand-drawn style</p>
+          <div className="highlight-text">
+            <h3>Rough.js Riders Anthem</h3>
+            <p>Animating SVGs with a hand-drawn style</p>
+          </div>
         </section>
 
         <section data-background-image="rough-homepage.png"></section>
